@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Flix</string>
+    <string name="movie_synopsis_and_overview">Movie synopsis and overview</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="review">Review</string>
+    <string name="backdrop_image">Backdrop Image</string>
+    <string name="rating">Rating</string>
+</resources>
