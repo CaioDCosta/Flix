@@ -3,6 +3,7 @@ package com.example.flix;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -55,5 +56,11 @@ public class MovieDetail extends AppCompatActivity {
 
 		Glide.with(ivBackdropImage.getContext()).load(imageUrl).bitmapTransform(new RoundedCornersTransformation(ivBackdropImage.getContext(), radius, margin))
 				.placeholder(R.drawable.flicks_backdrop_placeholder).error(R.drawable.flicks_backdrop_placeholder).into(ivBackdropImage);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.getWindow().setUiOptions(View.SYSTEM_UI_FLAG_FULLSCREEN);
 	}
 }
