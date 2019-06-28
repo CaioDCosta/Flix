@@ -25,6 +25,11 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
+    private static final int FADING_LENGTH_LANDSCAPE = 30;
+    private static final int FADING_LENGTH_PORTRAIT = 80;
+    private static final int ROUNDED_RADIUS = 30;
+    private static final int ROUND_MARGIN = 10;
+
     // List of movies
     ArrayList<Movie> movies;
 
@@ -34,10 +39,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     // Rendering Context
     Context context;
 
+    // RecyclerView for setting fade length
+    RecyclerView rvMovies;
 
-
-    public MovieAdapter(ArrayList<Movie> movies) {
+    public MovieAdapter(ArrayList<Movie> movies, RecyclerView rvMovies) {
         this.movies = movies;
+        this.rvMovies = rvMovies;
     }
 
     @NonNull
@@ -46,6 +53,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View movieView = inflater.inflate(R.layout.item_movie, viewGroup, false);
+
         return new ViewHolder(movieView);
     }
 
@@ -60,17 +68,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         boolean isPortrait = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
         if(isPortrait) {
             imageUrl = config.getImageUrl(config.getPosterSize(), movie.getPosterPath());
+            rvMovies.setFadingEdgeLength(FADING_LENGTH_PORTRAIT);
         }
         else {
             imageUrl = config.getImageUrl(config.getBackdropSize(), movie.getBackdropPath());
+            rvMovies.setFadingEdgeLength(FADING_LENGTH_LANDSCAPE);
         }
-        // Radius and margin for rounded corners
-        int radius = 30; int margin = 10;
 
         ImageView imageView = isPortrait ? viewHolder.ivPosterImage : viewHolder.ivBackdropImage;
         int placeholderID = isPortrait ? R.drawable.flicks_movie_placeholder : R.drawable.flicks_backdrop_placeholder;
 
-        Glide.with(context).load(imageUrl).bitmapTransform(new RoundedCornersTransformation(context, radius, margin))
+        Glide.with(context).load(imageUrl).bitmapTransform(new RoundedCornersTransformation(context, ROUNDED_RADIUS, ROUND_MARGIN))
                 .placeholder(placeholderID).error(placeholderID).into(imageView);
 
     }

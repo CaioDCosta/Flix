@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="0dp"
+    android:fitsSystemWindows="false"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvMovies"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#E6E6E6"
+        android:fadingEdge="vertical"
+        android:fadingEdgeLength="100dp"
+        android:requiresFadingEdge="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

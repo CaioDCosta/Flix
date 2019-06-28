@@ -54,13 +54,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        rvMovies = findViewById(R.id.rvMovies);
 
         client = new AsyncHttpClient();
 
         movies = new ArrayList<>();
-        adapter = new MovieAdapter(movies);
+        adapter = new MovieAdapter(movies, rvMovies);
 
-        rvMovies = findViewById(R.id.rvMovies);
+
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
         rvMovies.setAdapter(adapter);
 
