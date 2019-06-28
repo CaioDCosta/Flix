@@ -23,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
@@ -41,20 +43,20 @@ public class MovieDetail extends AppCompatActivity {
 	Movie movie;
 	Config config;
 
-	TextView tvTitle;
-	TextView tvOverview;
-	RatingBar rbVoteAverage;
-	ImageView ivBackdropImage;
+	@BindView(R.id.tvTitle)	TextView tvTitle;
+	@BindView(R.id.tvOverview) TextView tvOverview;
+	@BindView(R.id.rbVoteAverage) RatingBar rbVoteAverage;
+	@BindView(R.id.ivBackdropImage) ImageView ivBackdropImage;
 	String trailerKey;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		setContentView(R.layout.activity_movie_detail);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
 		this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+		ButterKnife.bind(this);
 
-		setContentView(R.layout.activity_movie_detail);
 		// unwrap the movie passed in via intent, using its simple name as a key
 		movie = (Movie) Parcels.unwrap(getIntent().getExtras().getParcelable(Movie.class.getSimpleName()));
 		config = (Config) Parcels.unwrap(getIntent().getExtras().getParcelable(Config.class.getSimpleName()));
@@ -86,12 +88,6 @@ public class MovieDetail extends AppCompatActivity {
 				logError("Failed to get data from videos endpoint", throwable,true);
 			}
 		});
-
-
-		tvTitle = (TextView) findViewById(R.id.tvTitle);
-		tvOverview = (TextView) findViewById(R.id.tvOverview);
-		rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
-		ivBackdropImage = (ImageView) findViewById(R.id.ivBackdropImage);
 
 		tvTitle.setText(movie.getTitle());
 		tvOverview.setText(movie.getOverview());

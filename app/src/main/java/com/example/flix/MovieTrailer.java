@@ -30,7 +30,6 @@ public class MovieTrailer extends YouTubeBaseActivity {
 			                                    YouTubePlayer youTubePlayer, boolean b) {
 				// do any work here to cue video, play video, etc.
 				youTubePlayer.cueVideo(videoId);
-				youTubePlayer.setFullscreen(true);
 				youTubePlayer.play();
 			}
 
