@@ -32,11 +32,7 @@ public class MainActivity extends AppCompatActivity {
     // Activity error logging tag
     public static final String TAG = "MainActivity";
 
-
-
     AsyncHttpClient client;
-
-
 
     // Movie List
     ArrayList<Movie> movies;

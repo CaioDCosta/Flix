@@ -7,12 +7,19 @@ import org.parceler.Parcel;
 @Parcel
 public class Movie {
 
+	// Base URL
+	public static final String API_BASE_URL = "https://api.themoviedb.org/3";
+
+	// API Key Parameter
+	public static final String API_KEY_PARAM = "api_key";
+
 	// Values from API
 	String title;
 	String overview;
 	String posterPath;
 	String backdropPath;
 	Double voteAverage;
+	String id;
 
 	// Included for Parceler
 	public Movie() {
@@ -25,6 +32,7 @@ public class Movie {
 		posterPath = object.getString("poster_path");
 		backdropPath = object.getString("backdrop_path");
 		voteAverage = object.getDouble("vote_average");
+		id = object.getString("id");
 	}
 
 	public String getTitle() {
@@ -42,4 +50,6 @@ public class Movie {
 	public String getBackdropPath() { return backdropPath; }
 
 	public Double getVoteAverage() { return voteAverage; }
+
+	public String getId() { return id; }
 }

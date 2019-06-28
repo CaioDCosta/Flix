@@ -5,11 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00000000"
-    android:fitsSystemWindows="true">
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:padding="10dp">
 
     <ScrollView
-        android:layout_width="wrap_content"
+        style="@style/Theme.AppCompat.Translucent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#00808080"
+        android:clipToPadding="false"
         android:fitsSystemWindows="true"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,40 +23,59 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.CardView
-            padding="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/cvDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
             app:cardCornerRadius="15dp"
-            app:cardElevation="5dp"
-            app:cardMaxElevation="5dp">
+            app:cardElevation="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
                 android:isScrollContainer="true"
                 tools:context=".MovieDetail">
 
                 <ImageView
                     android:id="@+id/ivBackdropImage"
-                    android:layout_width="363dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:adjustViewBounds="true"
+                    android:backgroundTint="@color/colorAccent"
                     android:contentDescription="@string/backdrop_image"
                     android:cropToPadding="true"
+                    android:onClick="onClickBackdrop"
                     android:scaleType="fitXY"
+                    android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+
+                <ImageView
+                    android:id="@+id/ivPlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBackdropImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivBackdropImage"
+                    app:srcCompat="@android:drawable/ic_media_play" />
 
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="@string/movie_title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     app:layout_constraintEnd_toEndOf="@+id/ivBackdropImage"
@@ -64,8 +88,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:background="#4D4D4D"
+                    android:backgroundTint="@color/colorAccent"
                     android:numStars="5"
                     android:stepSize=".5"
+                    android:theme="@style/RatingBar"
                     app:layout_constraintStart_toStartOf="@+id/tvTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
@@ -76,6 +103,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="24dp"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="@string/movie_synopsis_and_overview"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/ivBackdropImage"
@@ -85,6 +113,7 @@
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.CardView>
+
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
